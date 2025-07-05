@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento Universitário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de Gerenciamento Universitário</h1>
+
+        <div class="menu">
+            <button onclick="showSection('turmas')">Gerenciar Turmas</button>
+            <button onclick="showSection('disciplinas_catalogo')">Catálogo de Disciplinas</button>
+            <button onclick="showSection('alunos')">Gerenciar Alunos</button>
+            <button onclick="showSection('matriculas')">Gerenciar Matrículas</button>
+        </div>
+
+        <div id="turmas-section" class="section active">
+            <h2>Turmas</h2>
+            <div class="form-group">
+                <h3>Cadastrar Nova Turma:</h3>
+                <input type="text" id="turma-nome" placeholder="Nome da Turma (Ex: 2024-1 ADS)">
+                <button onclick="addTurma()">Adicionar Turma</button>
+            </div>
+            <div class="search-group">
+                <input type="text" id="search-turma-input" placeholder="Pesquisar Turma por nome">
+                <button onclick="searchData('turma')">Pesquisar Turma</button>
+            </div>
+            <h3>Turmas Existentes:</h3>
+            <div id="turmas-list"></div>
+        </div>
+
+        <div id="disciplinas_catalogo-section" class="section">
+            <h2>Catálogo de Disciplinas</h2>
+            <div class="form-group">
+                <h3>Cadastrar Nova Disciplina no Catálogo:</h3>
+                <input type="text" id="disciplina-codigo" placeholder="Código da Disciplina (Ex: CC001)">
+                <input type="text" id="disciplina-nome" placeholder="Nome da Disciplina (Ex: Algoritmos e Estruturas de Dados)">
+                <button onclick="addDisciplina()">Adicionar Disciplina</button>
+            </div>
+            <div class="search-group">
+                <input type="text" id="search-disciplina-input" placeholder="Pesquisar Disciplina por código ou nome">
+                <button onclick="searchData('disciplina')">Pesquisar Disciplina</button>
+            </div>
+            <h3>Disciplinas no Catálogo:</h3>
+            <div id="disciplinas-catalogo-list"></div>
+        </div>
+
+        <div id="alunos-section" class="section">
+            <h2>Alunos</h2>
+            <div class="form-group">
+                <h3>Cadastrar Novo Aluno:</h3>
+                <input type="text" id="aluno-matricula" placeholder="Matrícula do Aluno (Ex: 12345)">
+                <input type="text" id="aluno-nome" placeholder="Nome do Aluno">
+                <input type="text" id="aluno-telefone" placeholder="Telefone do Aluno (Ex: 5511987654321)">
+                <button onclick="addAluno()">Adicionar Aluno</button>
+            </div>
+            <div class="search-group">
+                <input type="text" id="search-aluno-input" placeholder="Pesquisar Aluno por nome ou matrícula">
+                <button onclick="searchData('aluno')">Pesquisar Aluno</button>
+            </div>
+            <h3>Alunos Existentes:</h3>
+            <div id="alunos-list"></div>
+        </div>
+
+        <div id="matriculas-section" class="section">
+            <h2>Matrículas e Ofertas de Disciplina</h2>
+            <div class="form-group">
+                <h3>Realizar Matrícula:</h3>
+                <label for="matricula-aluno-select">Aluno:</label>
+                <select id="matricula-aluno-select"></select>
+                <label for="matricula-turma-disciplina-select">Oferta de Disciplina:</label>
+                <select id="matricula-turma-disciplina-select"></select>
+                <button onclick="addMatricula()">Realizar Matrícula</button>
+            </div>
+            <div class="form-group">
+                <h3>Ofertar Disciplina em Turma:</h3>
+                <label for="oferta-turma-select">Turma:</label>
+                <select id="oferta-turma-select"></select>
+                <label for="oferta-disciplina-select">Disciplina (Catálogo):</label>
+                <select id="oferta-disciplina-select"></select>
+                <input type="text" id="oferta-professor" placeholder="Professor">
+                <button onclick="addOfertaDisciplina()">Adicionar Oferta</button>
+            </div>
+            
+            <h3>Matrículas Existentes:</h3>
+            <div id="matriculas-list-container"></div>
+            
+            <h3>Ofertas de Disciplina Existentes:</h3>
+            <div id="turma-disciplinas-ofertas-list"></div>
+        </div>
+    </div>
+
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2>Editar Informações</h2>
+            <div id="modal-form-content">
+                </div>
+            <button onclick="saveEdit()">Salvar</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
