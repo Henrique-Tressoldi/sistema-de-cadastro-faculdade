@@ -1,3 +1,0 @@
-09f62e2a-6a7a-439c-b5cb-7c7912eabc04|1|cirurgia
-32bebc83-7a9a-49d0-b16f-cc0856679325|2|pediatria
-59937545-a1b3-4b85-ba52-7e2ee7a71f0f|3|Medicina Interna
